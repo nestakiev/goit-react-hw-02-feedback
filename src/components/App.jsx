@@ -37,23 +37,15 @@ export class App extends Component {
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage();
     return (
-      <div
-        // style={{
-        //   height: '100vh',
-        //   display: 'flex',
-        //   justifyContent: 'center',
-        //   alignItems: 'center',
-        //   fontSize: 40,
-        //   color: '#010101'
-        // }}
-      >
+      <div>
         
         <Section title="Please leave feedback">
         <FeedbackOptions options={options} onLeaveFeedback={this.onLeaveFeedback}/>
         </Section>
         <Section title="Statistics">
-        {total !== 0 && <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}/>}
-        {total === 0 && <Notification message="There is no feedback" />}
+        {total === 0 ? 
+                <Notification message="There is no feedback" /> : 
+                <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage}/>}
         </Section>
         </div>
     );
